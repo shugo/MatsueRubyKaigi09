@@ -58,7 +58,8 @@ at_exit do
       end
     }
   end
-  MinThread.resume # until MinThread::QUEUE.empty?
+  MinThread.resume
+  print("")
 end
 
 MinThread.start do
