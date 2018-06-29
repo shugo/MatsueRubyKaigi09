@@ -129,7 +129,7 @@ MinThread.start do
   20.times do |i|
     puts "Thread#2: #{i}"
     sleep(0.1)
-    MinThread.pass
+    MinThread.pass # これが必要
   end
 end
 ```
@@ -160,7 +160,7 @@ end
 * フックの中ではTracePointが無効化される
 * フック中で継続を呼ぶと無効化されたまま
 
-# モンキーパッチ
+# じゃあモンキーパッチで
 
 ```ruby
 at_exit do
