@@ -1,10 +1,10 @@
-# Rubyでつくるスレッド
+# Rubyでつくる\\nスレッド
 
 author
 : Shugo Maeda
 
 institution
-: Network Applied Communication Laboratory Ltd.
+: NaCl
 
 date
 : 2018-06-30
@@ -33,18 +33,25 @@ MinThread.start do
 end
 ```
 
-# 継続
+# 継続(Continuation)
 
-* 次の計算を表す
-* グローバルなgotoみたいなもの
-* 継続はRuby 1.8のスレッドの実装を使ってつくった
+* 次に実行される計算を表す
+* グローバルgoto
+* オブジェクトの状態は戻らない
+* Ruby 1.8のスレッドの実装を利用
     * [ruby-dev:4083]
-* では継続でスレッドをつくれるのでは？
+* 継続でスレッドをつくれるのでは？
 
-# わかる人にはわかる説明
+# わかる人にはわかる説明(1)
 
-* Ruby 1.8のスレッドはスタックをコピーしてコンテキストスイッチのたびにスタックを書き戻す
-* 継続も同じ仕組みで実装されている
+* Ruby 1.8のスレッドはsetjmp()/longjmp()で切り替える
+* スタックは自前で保存して書き戻す
+* 継続も同じ仕組み
+
+# わかる人にはわかる説明(2)
+
+|スレッド|並行宇宙|
+|継続|世界線|
 
 # 継続の例
 
@@ -54,6 +61,8 @@ callcc {|c| $cont = c}
 print "Hello, World!\n" 
 $cont.call
 ```
+
+# 実装
 
 # スレッドの作成
 
@@ -114,7 +123,7 @@ MinThread.start do
 end
 ```
 
-# 何か違う
+# でも何か違う
 
 ```ruby
 MinThread.start do
