@@ -176,7 +176,6 @@ at_exit do
     }
   end
   MinThread.resume
-  print("")
 end
 ```
 

@@ -59,7 +59,7 @@ at_exit do
     }
   end
   MinThread.resume
-  print("")
+  print
 end
 
 MinThread.start do
