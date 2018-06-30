@@ -9,9 +9,7 @@ module MinThread
 
   def self.pass
     callcc do |c|
-      start do
-        c.call
-      end
+      QUEUE.push(c)
       resume
     end
   end
